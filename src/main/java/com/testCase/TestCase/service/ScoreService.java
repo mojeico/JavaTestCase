@@ -19,8 +19,8 @@ public class ScoreService {
     public List<Score> findScore(String code) {
 
         StoredProcedureQuery storedProcedure = manager.createStoredProcedureQuery("sp_scores_get")
-                .registerStoredProcedureParameter(0, String.class, ParameterMode.IN)
-                .setParameter(0, code);
+                .registerStoredProcedureParameter("code", String.class, ParameterMode.IN)
+                .setParameter("code", code);
 
         List<Score> list = storedProcedure.getResultList();
 
