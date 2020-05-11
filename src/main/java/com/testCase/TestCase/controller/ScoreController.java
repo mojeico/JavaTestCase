@@ -14,16 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/score")
 public class ScoreController {
 
     @Autowired
     ScoreService scoreService;
 
-    @RequestMapping(value = "/get/{code}", method = RequestMethod.GET)
+    @RequestMapping(value = "/getScore/{code}", method = RequestMethod.GET)
     public ResponseEntity<List<Score>> getScore(@PathVariable(name = "code") String code) {
 
-        List<Score> accounts = scoreService.findScore(code);
+        List<Score> scoreList = scoreService.findScore(code);
 
-        return ResponseEntity.status(HttpStatus.OK).body(accounts);
+
+        return ResponseEntity.status(HttpStatus.OK).body(scoreList);
     }
 }

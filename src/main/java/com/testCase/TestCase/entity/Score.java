@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
                 name = "sp_account_get",
                 procedureName = "sp_account_get",
                 resultClasses = {Score.class},
+
                 parameters = {
                         @StoredProcedureParameter(
                                 name = "code",
@@ -27,7 +28,7 @@ public class Score implements Serializable {
 
     public String code;
 
-    public String rest;
+    public double rest;
 
     public String currency;
 
@@ -35,7 +36,7 @@ public class Score implements Serializable {
     public LocalDateTime lastOperationDate;
 
 
-    public Score(String code, String rest, String currency, LocalDateTime lastOperationDate) {
+    public Score(String code, double rest, String currency, LocalDateTime lastOperationDate) {
         this.code = code;
         this.rest = rest;
         this.currency = currency;
@@ -62,11 +63,11 @@ public class Score implements Serializable {
         this.code = code;
     }
 
-    public String getRest() {
+    public double getRest() {
         return rest;
     }
 
-    public void setRest(String rest) {
+    public void setRest(double rest) {
         this.rest = rest;
     }
 

@@ -22,7 +22,6 @@ public class ScoreService {
                 .registerStoredProcedureParameter("code", String.class, ParameterMode.IN)
                 .setParameter("code", code);
 
-        List<Score> list = storedProcedure.getResultList();
 
         return list;
     }
