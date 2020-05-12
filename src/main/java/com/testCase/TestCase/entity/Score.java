@@ -1,6 +1,8 @@
 package com.testCase.TestCase.entity;
 
 
+import org.springframework.data.jpa.repository.query.Procedure;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -24,17 +26,16 @@ public class Score implements Serializable {
 
     @Id
     @GeneratedValue
-    public Long id;
+    private Long id;
 
-    public String code;
+    private String code;
 
-    public double rest;
+    private double rest;
 
-    public String currency;
+    private String currency;
 
     @Column(name = "last_operation_date")
-    public LocalDateTime lastOperationDate;
-
+    private LocalDateTime lastOperationDate;
 
     public Score(String code, double rest, String currency, LocalDateTime lastOperationDate) {
         this.code = code;
