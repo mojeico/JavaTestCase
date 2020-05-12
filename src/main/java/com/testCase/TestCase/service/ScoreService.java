@@ -8,10 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureQuery;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 @Service
 public class ScoreService {
@@ -34,7 +31,7 @@ public class ScoreService {
         for (Object score : scoreList) {
             scores
                     .add(
-                            new TreeMap<String, String>() {{
+                            new LinkedHashMap<String, String>() {{
                                 put("code", ((Object[]) score)[0].toString());
                                 put("rest", ((Object[]) score)[1].toString());
                                 put("currency", ((Object[]) score)[2].toString());
