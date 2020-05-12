@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureQuery;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 @Service
 public class ScoreService {
@@ -16,7 +19,7 @@ public class ScoreService {
     @Autowired
     private EntityManager manager;
 
-    public List<Score> findScore(String code) {
+    public List<Map<String, String>> findScore(String code) {
 
         StoredProcedureQuery storedProcedure = manager.createStoredProcedureQuery("sp_scores_get")
                 .registerStoredProcedureParameter("code", String.class, ParameterMode.IN)
@@ -25,7 +28,21 @@ public class ScoreService {
 
         List<Score> scoreList = storedProcedure.getResultList();
 
-        return scoreList;
+        List<Map<String, String>> scores = new LinkedList<>();
+
+
+        for (Object score : scoreList) {
+            scores
+                    .add(
+                            new TreeMap<String, String>() {{
+                                put("code", ((Object[]) score)[0].toString());
+                                put("rest", ((Object[]) score)[1].toString());
+                                put("currency", ((Object[]) score)[2].toString());
+                            }}
+                    );
+        }
+
+        return scores;
     }
 
 

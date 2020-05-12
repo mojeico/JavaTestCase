@@ -1,8 +1,6 @@
 package com.testCase.TestCase.entity;
 
 
-import org.springframework.data.jpa.repository.query.Procedure;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
